@@ -18,6 +18,7 @@
 //         return capacity;
 //     }
 // }
+// 双指针代表的是 可以作为容器边界的所有位置的范围
 class Solution {
     public int maxArea(int[] height) {
         int len = height.length;
