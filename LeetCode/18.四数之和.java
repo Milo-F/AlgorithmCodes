@@ -13,9 +13,18 @@ class Solution {
         int len = nums.length;
         if(len < 4 || (len == 4 && nums[0] + nums[1] + nums[2] + nums[3] != target)) return result;
         for (int i = 0; i < len - 3; ++i) {
-            while(i < len - 3 && i > 0 && nums[i - 1] == nums[i]) ++i;
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            //利用最大最小值减少计算步骤
+            //minSum
+            if (nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target) continue;
+            //maxSum
+            if (nums[i] + nums[len - 1] + nums[len - 2] + nums[len - 3] < target) continue;
             for (int j = i + 1; j < len - 2; ++j) {
-                while(j < len-2 && j > i + 1 && nums[j-1] == nums[j]) ++j;
+                if (j > i + 1 && nums[j] == nums[j - 1]) continue;
+                //maxSum
+                if (nums[i] + nums[j] + nums[len - 1] + nums[len - 2] < target) continue;
+                //minSum
+                if (nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target) continue;
                 int lPoint = j + 1;
                 int rPoint = len - 1;
                 int sum = 0;
