@@ -19,7 +19,7 @@ class Solution {
         int newTarget = 0;
         for (int i = beginInedx + 1; i < nums.length; ++i) {
             // why?为什么这句会起到去重的作用
-            // 
+            // 保证了同一个递归层不出现相同的头number
             if (i > beginInedx + 1 && nums[i] == nums[i - 1]) continue;// 去重
             newTarget = target - nums[i];
             if (newTarget == 0) {
