@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-class Solution {
+// class Solution {
     public int firstMissingPositive(int[] nums) {
         int len = nums.length;
         Arrays.sort(nums);
@@ -28,6 +28,22 @@ class Solution {
         // 找到间距大于等于2的正数位置
         for (int i = mid + 1; i < len; ++i) {
             if (nums[i] - nums[i - 1] > 1) {
+                return nums[i - 1] + 1;
+            }
+        }
+        return nums[len - 1] + 1;
+    }
+}
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        int len = nums.length;
+        Arrays.sort(nums);
+        if (len == 0 || nums == null) return 1;
+        if (nums[len - 1] <= 0 || nums[0] > 1) return 1;
+        for (int i = 1; i < len; ++i) {
+            if (nums[i] == 1) continue;
+            if (nums[i] > 0 && nums[i] - nums[i - 1] > 1) {
+                if (nums[i - 1] < 0) return 1;
                 return nums[i - 1] + 1;
             }
         }
