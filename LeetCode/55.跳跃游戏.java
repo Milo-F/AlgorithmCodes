@@ -23,5 +23,25 @@ class Solution {
         return nums[i] == 0 && i != len - 1 ? false : true;
     }
 }
+class Solution {
+    public boolean canJump(int[] nums) {
+        int currentPower = nums[0];
+        if(nums[0]==0 && nums.length != 1){
+            return false;
+        }
+        for (int a = 1; a < nums.length; a++) {
+            currentPower--;
+            if (nums[a] < currentPower) {
+                continue;
+            } else {
+                currentPower = nums[a];
+            }
+            if (currentPower == 0 && nums[a] == 0 && a != nums.length - 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 // @lc code=end
 
